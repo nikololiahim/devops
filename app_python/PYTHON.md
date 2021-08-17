@@ -16,6 +16,8 @@
 - [requirements.txt](https://pip.pypa.io/en/stable/user_guide/#requirements-files) - a file that specifies project
   dependencies
 - [.gitignore template](https://github.com/github/gitignore/blob/master/Python.gitignore) provided by Github
+- config.py file for storing project-wide configurations
+- configurable [logging](https://flask.palletsprojects.com/en/2.0.x/logging/) built into Flask object
 
 # Frameworks/Libraries Used
 
@@ -23,7 +25,8 @@
   used in industry-scale web applications
 - [pytz](https://github.com/stub42/pytz/blob/master/src/README.rst) - a library used for time calculations, in
   particular, for making sure that we are indeed using the Moscow time
-- [pytest](https://github.com/pytest-dev/pytest) - a de-facto industry standard framework for writing and running tests 
+- [pytest](https://github.com/pytest-dev/pytest) - a de-facto industry standard framework for writing and running tests
+- [waitress](https://docs.pylonsproject.org/projects/waitress/en/latest/) a production-ready WSGI server implementation
 
 # Tools Used
 
