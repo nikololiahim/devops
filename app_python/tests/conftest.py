@@ -1,9 +1,8 @@
 import datetime
 
 import pytest
-import pytz
 
-from moscow_time import create_app, zfill
+from moscow_time import MOSCOW_TZ, create_app, zfill
 
 
 @pytest.fixture
@@ -14,13 +13,18 @@ def client():
 
 
 @pytest.fixture
+def now_as_timestamp():
+    yield datetime.datetime.now(tz=MOSCOW_TZ)
+
+
+@pytest.fixture
 def response(client):
     yield client.get("/").data
 
 
 @pytest.fixture
 def now():
-    current_time = datetime.datetime.now(pytz.timezone("Europe/Moscow"))
+    current_time = datetime.datetime.now(tz=MOSCOW_TZ)
     yield {
         "hour": zfill(current_time.hour),
         "minute": zfill(current_time.minute),
