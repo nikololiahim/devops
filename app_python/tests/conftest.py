@@ -1,7 +1,9 @@
-import pytest
-from moscow_time import create_app, zfill
 import datetime
+
+import pytest
 import pytz
+
+from moscow_time import create_app, zfill
 
 
 @pytest.fixture

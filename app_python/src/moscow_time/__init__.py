@@ -1,8 +1,9 @@
-import os
-from flask import Flask, render_template
 import datetime
-import pytz
+import os
 from collections import namedtuple
+
+import pytz
+from flask import Flask, render_template
 
 MoscowTime = namedtuple("MoscowTime", ["hour", "minute", "second"])
 
@@ -29,6 +30,7 @@ def create_app(test_config=None):
     @app.route("/")
     def hello_world():
         msc_time = datetime.datetime.now(pytz.timezone("Europe/Moscow"))
+        app.logger.debug(f"CURRENT TIME IN MOSCOW: {msc_time}")
         formatted_msc_time = MoscowTime(
             hour=zfill(msc_time.hour),
             minute=zfill(msc_time.minute),
