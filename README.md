@@ -40,7 +40,7 @@ sudo apt install -y python3-venv
     python3 app.py
 ```
 
-## Help
+## Configuration
 
 An app is configurable through `config.py` file. Some available options are:
 
@@ -53,6 +53,7 @@ An app is configurable through `config.py` file. Some available options are:
 | Name           | E-mail                        | Github        |
 |----------------|-------------------------------|---------------|
 | Mikhail Olokin | m.olokin@innopolis.university | @nikololiahim |
+
 ## Version History
 
 * 0.0.1
@@ -61,3 +62,8 @@ An app is configurable through `config.py` file. Some available options are:
 ## License
 
 This project is licensed under the MIT License - see the LICENSE.md file for details
+
+## Acknowledgements
+
+I used [this](https://gist.github.com/DomPizzie/7a5ff55ffa9081f2de27c315f5018afc) template for this `README.md`
+structure
