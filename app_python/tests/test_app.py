@@ -1,8 +1,29 @@
-import time
+import datetime
+from typing import Optional
+
+import freezegun
+import pytest
 
 
-def formatted_time(hour: str, minute: str, second: str) -> bytes:
-    return f"Time: {hour}:{minute}:{second}".encode()
+def formatted_time(time: dict) -> bytes:
+    return f"Time: {time['hour']}:{time['minute']}:{time['second']}".encode()
+
+
+def inc_time(
+    time: dict,
+    hours: Optional[int] = None,
+    minutes: Optional[int] = None,
+    seconds: Optional[int] = None,
+) -> dict:
+    for value, attr in (
+        (hours, "hour"),
+        (minutes, "minute"),
+        (seconds, "second"),
+    ):
+        time = time.copy()
+        if value is not None:
+            time[attr] = str(int(time[attr]) + value).zfill(2)
+    return time
 
 
 def test_correct_timezone(response):
@@ -10,22 +31,29 @@ def test_correct_timezone(response):
 
 
 def test_correct_time(response, now):
-    assert (
-        formatted_time(now["hour"], now["minute"], now["second"]) in response
-    )
+    assert formatted_time(now) in response
 
 
-def test_correct_time_on_update(client, now):
+@pytest.mark.parametrize(
+    "interval",
+    [
+        {"seconds": 3},
+        {"minutes": 3},
+        {"hours": 3},
+        {"hours": 3, "seconds": 3},
+        {"hours": 3, "minutes": 3},
+        {"minutes": 3, "seconds": 3},
+        {"hours": 3, "minutes": 3, "seconds": 3},
+    ],
+)
+def test_correct_time_on_update(client, now_as_timestamp, now, interval):
     response = client.get("/").data
     before = now
-    assert (
-        formatted_time(before["hour"], before["minute"], before["second"])
-        in response
-    )
-    time.sleep(1)
-    response = client.get("/").data
-    seconds_after = str(int(before["second"]) + 1).zfill(2)
-    assert (
-        formatted_time(before["hour"], before["minute"], seconds_after)
-        in response
-    )
+    assert formatted_time(before) in response
+
+    # some time later...
+    with freezegun.freeze_time(now_as_timestamp) as frozen_time:
+        frozen_time.tick(delta=datetime.timedelta(**interval))
+        response = client.get("/").data
+        after = inc_time(before, **interval)
+        assert formatted_time(after) in response

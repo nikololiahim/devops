@@ -2,3 +2,4 @@ flask
 pytz
 pytest-flask
 waitress
+freezegun

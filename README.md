@@ -23,6 +23,7 @@ sudo apt install -y python3-venv
 * pytest-flask
 * black
 * flake8
+* freezegun
 
 ### Installing
 
