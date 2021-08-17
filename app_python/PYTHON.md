@@ -12,6 +12,7 @@
 - using
   [conftest.py](https://docs.pytest.org/en/6.2.x/fixture.html?highlight=conftest#conftest-py-sharing-fixtures-across-multiple-files)
   to define fixtures (Pytest specific)
+- mocking `datetime` module in unit tests using `freezegun` library to avoid waiting a long time and time-related issues
 
 - [requirements.txt](https://pip.pypa.io/en/stable/user_guide/#requirements-files) - a file that specifies project
   dependencies
@@ -28,7 +29,8 @@
 - [pytest](https://github.com/pytest-dev/pytest) - a de-facto industry standard framework for writing and running tests
 - [freezegun](https://github.com/spulec/freezegun) - a mocking framework designed specifically to mock time-related
   actions
-- [waitress](https://docs.pylonsproject.org/projects/waitress/en/latest/) - a production-ready WSGI server implementation
+- [waitress](https://docs.pylonsproject.org/projects/waitress/en/latest/) - a production-ready WSGI server
+  implementation
 
 # Tools Used
 
