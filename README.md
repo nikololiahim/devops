@@ -1,9 +1,11 @@
-# Project Title
+# moscow_time
 
-A simple web app that displays current time in Moscow
+A simple web app that displays current time in Moscow, Russian Federation
 
 ## Getting Started
-In order to install the project you need to have Python 3.6+ installed in your system. For some systems (Ubuntu), you also need to install `pip` and `venv`:
+
+In order to install the project you need to have Python 3.6+ installed in your system. For some systems (Ubuntu), you
+also need to install `pip` and `venv`:
 
 ```
 sudo apt install -y python3-pip
@@ -14,13 +16,16 @@ sudo apt install -y python3-venv
 
 * flask
 * pytz
-* pytest-flask
+* waitress
 
-### Development dependencies
+### Development-specific dependencies
+
+* pytest-flask
 * black
 * flake8
 
 ### Installing
+
 ```bash 
    git clone https://github.com/nikololiahim/devops
    cd app_python
@@ -30,25 +35,26 @@ sudo apt install -y python3-venv
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
 ```
-code blocks for commands
+    python3 app.py
 ```
 
 ## Help
 
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
+An app is configurable through `config.py` file. Some available options are:
+
+* `DEBUG` - whether to display debug messages or not
+* `PORT` - the port to run application at
+* `HOST` - IP address of the host to run the application at
 
 ## Authors
 
-Mikhail Olokin
-m.olokin@innopolis.university
+| Name           | E-mail                        |
+|----------------|-------------------------------|
+| Mikhail Olokin | m.olokin@innopolis.university |
 
 ## Version History
+
 * 0.0.1
     * Initial Release
 
