@@ -15,12 +15,12 @@ def inc_time(
     minutes: Optional[int] = None,
     seconds: Optional[int] = None,
 ) -> dict:
+    time = time.copy()
     for value, attr in (
-        (hours, "hour"),
-        (minutes, "minute"),
-        (seconds, "second"),
+            (hours, "hour"),
+            (minutes, "minute"),
+            (seconds, "second"),
     ):
-        time = time.copy()
         if value is not None:
             time[attr] = str(int(time[attr]) + value).zfill(2)
     return time
