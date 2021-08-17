@@ -26,6 +26,8 @@
 - [pytz](https://github.com/stub42/pytz/blob/master/src/README.rst) - a library used for time calculations, in
   particular, for making sure that we are indeed using the Moscow time
 - [pytest](https://github.com/pytest-dev/pytest) - a de-facto industry standard framework for writing and running tests
+- [freezegun](https://github.com/spulec/freezegun) - a mocking framework designed specifically to mock time-related
+  actions
 - [waitress](https://docs.pylonsproject.org/projects/waitress/en/latest/) a production-ready WSGI server implementation
 
 # Tools Used
