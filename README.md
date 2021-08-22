@@ -37,7 +37,7 @@ sudo apt install -y python3-venv
 ### Executing program
 
 ```
-    python3 app.py
+    python3 -m moscow_time.__init__
 ```
 
 ## Docker
