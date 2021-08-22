@@ -40,6 +40,11 @@ sudo apt install -y python3-venv
     python3 app.py
 ```
 
+## Docker
+
+This app can be run as a Docker container. The image is
+available [on Dockerhub](https://hub.docker.com/repository/docker/nikololiahim/moscow_time).
+
 ## Configuration
 
 An app is configurable through `config.py` file. Some available options are:
