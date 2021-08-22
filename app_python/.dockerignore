@@ -1,0 +1,10 @@
+.pytest_cache
+**/instance/**/*
+**/*.egg_info/**/*
+tests
+venv/**/*
+venv/bin/**/*
+venv
+*.md
+.gitignore
+Dockerfile
