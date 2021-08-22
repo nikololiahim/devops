@@ -14,8 +14,8 @@
   to define fixtures (Pytest specific)
 - mocking `datetime` module in unit tests using `freezegun` library to avoid waiting a long time and time-related issues
 
-- [requirements.txt](https://pip.pypa.io/en/stable/user_guide/#requirements-files) - a file that specifies project
-  dependencies
+- multiple files with dependencies under the `requirements` directory to have separate sets of dependencies for different
+  environments
 - [.gitignore template](https://github.com/github/gitignore/blob/master/Python.gitignore) provided by Github
 - config.py file for storing project-wide configurations
 - configurable [logging](https://flask.palletsprojects.com/en/2.0.x/logging/) built into Flask object

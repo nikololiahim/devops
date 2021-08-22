@@ -1,5 +1,4 @@
-flask
-pytz
+-r prod.txt
+
 pytest-flask
-waitress
 freezegun
