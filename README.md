@@ -55,7 +55,7 @@ An app is configurable through `config.py` file. Some available options are:
 
 ## Authors
 
-| Name           | E-mail                        | Github        |
+| Name           | E-mail                        | Telegram        |
 |----------------|-------------------------------|---------------|
 | Mikhail Olokin | m.olokin@innopolis.university | @nikololiahim |
 
