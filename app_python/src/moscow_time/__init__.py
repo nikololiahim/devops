@@ -1,8 +1,11 @@
 import datetime
+import logging
 import os
 from collections import namedtuple
 
 import pytz
+import waitress
+from moscow_time.config import DEBUG, HOST, PORT
 from flask import Flask, render_template
 
 MOSCOW_TZ = pytz.timezone("Europe/Moscow")
@@ -40,3 +43,16 @@ def create_app(test_config=None):
         return render_template("index.html", date=formatted_msc_time)
 
     return app
+
+
+if __name__ == "__main__":
+    app = create_app()
+    if DEBUG:
+        app.logger.setLevel(logging.DEBUG)
+    app.logger.info(
+        f"""
+    Application running at {HOST}:{PORT}
+    Debug mode: {"on" if DEBUG else "off"}
+    """
+    )
+    waitress.serve(app, host=HOST, port=PORT)
