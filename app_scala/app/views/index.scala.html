@@ -1,0 +1,19 @@
+@*
+* This template takes a single argument, a String containing a
+* message to display.
+*@
+
+@(time: Time)
+@*
+* Call the `main` template with two arguments. The first
+* argument is a `String` with the title of the page, the second
+* argument is an `Html` object containing the body of the page.
+*@
+@main("Current Time in MSC") {
+    <h1>
+        Current time in Moscow, Russian Federation
+    </h1>
+    <h1>
+        Time: @time.hours:@time.minutes:@time.seconds
+    </h1>
+}
