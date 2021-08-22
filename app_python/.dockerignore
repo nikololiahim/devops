@@ -1,10 +1,8 @@
 .pytest_cache
-**/instance/**/*
-**/*.egg_info/**/*
+**/instance
+**/*.egg-info/**/*
 tests
 venv/**/*
-venv/bin/**/*
-venv
 *.md
 .gitignore
 Dockerfile
