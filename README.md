@@ -30,7 +30,7 @@ sudo apt install -y python3-venv
 ```bash 
    git clone https://github.com/nikololiahim/devops
    cd app_python
-   python3 -m pip install -r requirements.txt
+   python3 -m pip install -r requirements/dev.txt
    python3 -m pip install -e .
 ```
 
