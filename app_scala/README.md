@@ -42,9 +42,19 @@ available [on Dockerhub](https://hub.docker.com/r/nikololiahim/moscow_time_scala
 
 ### Executing program
 
+#### Locally
+
 ```shell
 $ sbt run
 ```
+
+#### In Docker
+
+```shell
+$ docker run nikololiahim/moscow_time_scala:latest
+```
+
+After that you can go to [localhost:9000](http://localhost:9000/) and see the app in action.
 
 ## Authors
 
