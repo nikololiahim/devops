@@ -29,5 +29,3 @@ dockerAlias := DockerAlias(
   "moscow_time_scala",
   Some("latest")
 )
-
-wartremoverErrors ++= Warts.unsafe
