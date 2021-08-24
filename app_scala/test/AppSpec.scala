@@ -11,7 +11,8 @@ class AppSpec extends PlaySpec with GuiceOneAppPerSuite {
 
   def currentTime: String = {
     val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
-    val formattedTime = timeFormatter.format(LocalDateTime.now(ZoneId.of("Europe/Moscow")))
+    val formattedTime =
+      timeFormatter.format(LocalDateTime.now(ZoneId.of("Europe/Moscow")))
     formattedTime
   }
 
@@ -22,7 +23,9 @@ class AppSpec extends PlaySpec with GuiceOneAppPerSuite {
       someOK must be(Some(OK))
     }
     "return status code 404 on a bad request" in {
-      route(app, FakeRequest(GET, "/wrong_request")).map(status(_)) must be(Some(NOT_FOUND))
+      route(app, FakeRequest(GET, "/wrong_request")).map(status(_)) must be(
+        Some(NOT_FOUND)
+      )
     }
   }
 

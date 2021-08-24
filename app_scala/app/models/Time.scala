@@ -7,7 +7,8 @@ class Time(val hours: String, val minutes: String, val seconds: String)
 object Time {
   def currentTime: (String, String, String) = {
     val time = LocalDateTime.now(ZoneId.of("Europe/Moscow"))
-    val formattedTime = Vector(time.getHour, time.getMinute, time.getSecond).map("%02d".format(_))
+    val formattedTime =
+      Vector(time.getHour, time.getMinute, time.getSecond).map("%02d".format(_))
     (formattedTime(0), formattedTime(1), formattedTime(2))
   }
 
