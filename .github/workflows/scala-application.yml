@@ -1,0 +1,24 @@
+name: Scala application
+on:
+  pull_request:
+  push:
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+        java: [8, 11]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Setup
+      uses: olafurpg/setup-scala@v10
+      with:
+        java-version: "adopt@1.${{ matrix.java }}"
+    - name: Build and test
+      run: |
+        cd app_scala
+        sbt -v -Dfile.encoding=UTF8 +test
+      shell: bash
