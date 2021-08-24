@@ -5,15 +5,12 @@ from collections import namedtuple
 
 import pytz
 import waitress
-from moscow_time.config import DEBUG, HOST, PORT
 from flask import Flask, render_template
 
+from moscow_time.config import DEBUG, HOST, PORT
+from moscow_time.models import MoscowTime
+
 MOSCOW_TZ = pytz.timezone("Europe/Moscow")
-MoscowTime = namedtuple("MoscowTime", ["hour", "minute", "second"])
-
-
-def zfill(num: int) -> str:
-    return str(num).zfill(2)
 
 
 def create_app(test_config=None):
@@ -35,12 +32,9 @@ def create_app(test_config=None):
     def hello_world():
         msc_time = datetime.datetime.now(tz=MOSCOW_TZ)
         app.logger.debug(f"CURRENT TIME IN MOSCOW: {msc_time}")
-        formatted_msc_time = MoscowTime(
-            hour=zfill(msc_time.hour),
-            minute=zfill(msc_time.minute),
-            second=zfill(msc_time.second),
+        return render_template(
+            "index.html", date=MoscowTime.from_datetime(msc_time)
         )
-        return render_template("index.html", date=formatted_msc_time)
 
     return app
 
