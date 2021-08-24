@@ -24,5 +24,3 @@ libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0
 dockerExposedPorts += 9000
 dockerChmodType := DockerChmodType.UserGroupWriteExecute
 dockerAlias := DockerAlias(None, Some("nikololiahim"), "moscow_time_scala", Some("latest"))
-
-

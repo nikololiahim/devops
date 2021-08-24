@@ -6,7 +6,7 @@ dictConfig(
         "formatters": {
             "default": {
                 "format": "[%(asctime)s] %(levelname)s "
-                "in %(module)s: %(message)s",
+                "in %(module)s: %(message)s"
             }
         },
         "handlers": {

@@ -1,12 +1,10 @@
 import datetime
 import logging
 import os
-from collections import namedtuple
 
 import pytz
 import waitress
 from flask import Flask, render_template
-
 from moscow_time.config import DEBUG, HOST, PORT
 from moscow_time.models import MoscowTime
 
@@ -15,9 +13,7 @@ MOSCOW_TZ = pytz.timezone("Europe/Moscow")
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(
-        SECRET_KEY="dev",
-    )
+    app.config.from_mapping(SECRET_KEY="dev")
 
     if test_config is not None:
         app.config.from_mapping(test_config)

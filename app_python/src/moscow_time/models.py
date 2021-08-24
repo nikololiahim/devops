@@ -31,7 +31,7 @@ class MoscowTime:
 
     @classmethod
     def from_string(cls, s: str):
-        return cls(*s.split(":"))
+        return cls(*map(lambda s: s.zfill(2), s.split(":")))
 
     def to_timedelta(self) -> datetime.timedelta:
         return datetime.timedelta(
@@ -60,6 +60,7 @@ class MoscowTime:
 
 
 if __name__ == "__main__":
-    now = MoscowTime.from_string("11:13:39")
-    interval = MoscowTime.from_string("03:03:00")
+    now = MoscowTime.from_string("11:13:5")
+    interval = MoscowTime.from_string("25:23:10")
+    print(interval)
     print(now + interval)

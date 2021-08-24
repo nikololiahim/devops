@@ -1,7 +1,6 @@
 import datetime
 
 import pytest
-
 from moscow_time import MOSCOW_TZ, create_app
 from moscow_time.models import MoscowTime
 

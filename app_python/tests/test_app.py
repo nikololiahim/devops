@@ -1,6 +1,5 @@
 import freezegun
 import pytest
-
 from moscow_time.models import MoscowTime
 
 
