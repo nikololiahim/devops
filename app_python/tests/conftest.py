@@ -2,7 +2,8 @@ import datetime
 
 import pytest
 
-from moscow_time import MOSCOW_TZ, create_app, zfill
+from moscow_time import MOSCOW_TZ, create_app
+from moscow_time.models import MoscowTime
 
 
 @pytest.fixture
@@ -25,8 +26,4 @@ def response(client):
 @pytest.fixture
 def now():
     current_time = datetime.datetime.now(tz=MOSCOW_TZ)
-    yield {
-        "hour": zfill(current_time.hour),
-        "minute": zfill(current_time.minute),
-        "second": zfill(current_time.second),
-    }
+    yield MoscowTime.from_datetime(current_time)

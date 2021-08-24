@@ -1,29 +1,11 @@
-import datetime
-from typing import Optional
-
 import freezegun
 import pytest
 
-
-def formatted_time(time: dict) -> bytes:
-    return f"Time: {time['hour']}:{time['minute']}:{time['second']}".encode()
+from moscow_time.models import MoscowTime
 
 
-def inc_time(
-    time: dict,
-    hours: Optional[int] = None,
-    minutes: Optional[int] = None,
-    seconds: Optional[int] = None,
-) -> dict:
-    time = time.copy()
-    for value, attr in (
-            (hours, "hour"),
-            (minutes, "minute"),
-            (seconds, "second"),
-    ):
-        if value is not None:
-            time[attr] = str(int(time[attr]) + value).zfill(2)
-    return time
+def formatted_time(time: "MoscowTime") -> bytes:
+    return str(time).encode()
 
 
 def test_correct_timezone(response):
@@ -37,13 +19,13 @@ def test_correct_time(response, now):
 @pytest.mark.parametrize(
     "interval",
     [
-        {"seconds": 3},
-        {"minutes": 3},
-        {"hours": 3},
-        {"hours": 3, "seconds": 3},
-        {"hours": 3, "minutes": 3},
-        {"minutes": 3, "seconds": 3},
-        {"hours": 3, "minutes": 3, "seconds": 3},
+        MoscowTime(seconds="03"),
+        MoscowTime(minutes="03"),
+        MoscowTime(hours="03"),
+        MoscowTime(hours="03", seconds="03"),
+        MoscowTime(hours="03", minutes="03"),
+        MoscowTime(minutes="03", seconds="03"),
+        MoscowTime(hours="03", minutes="03", seconds="03"),
     ],
 )
 def test_correct_time_on_update(client, now_as_timestamp, now, interval):
@@ -53,7 +35,26 @@ def test_correct_time_on_update(client, now_as_timestamp, now, interval):
 
     # some time later...
     with freezegun.freeze_time(now_as_timestamp) as frozen_time:
-        frozen_time.tick(delta=datetime.timedelta(**interval))
+        frozen_time.tick(delta=interval.to_timedelta())
         response = client.get("/").data
-        after = inc_time(before, **interval)
+        after = before + interval
         assert formatted_time(after) in response
+
+
+@pytest.mark.parametrize(
+    "start,inc,expected",
+    [
+        (
+            MoscowTime(hours="11", minutes="59", seconds="59"),
+            MoscowTime(seconds="01"),
+            MoscowTime(hours="12"),
+        ),
+        (
+            MoscowTime(hours="11", minutes="58", seconds="59"),
+            MoscowTime(minutes="01", seconds="01"),
+            MoscowTime(hours="12"),
+        ),
+    ],
+)
+def test_inc_time(start, inc, expected):
+    assert start + inc == expected
