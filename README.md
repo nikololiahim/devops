@@ -1,4 +1,6 @@
 # Devops
+[![Python application](https://github.com/nikololiahim/devops/actions/workflows/python-app.yml/badge.svg)](https://github.com/nikololiahim/devops/actions/workflows/python-app.yml)
+
 This is a repository for labs of 2021 DevOps course at Innopolis University.
 
 # Contents
