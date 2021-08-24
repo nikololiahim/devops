@@ -12,38 +12,34 @@ sudo apt install -y python3-pip
 sudo apt install -y python3-venv
 ```
 
-### Dependencies
+## Running
 
-* flask
-* pytz
-* waitress
+### Locally
 
-### Development-specific dependencies
-
-* pytest-flask
-* black
-* flake8
-* freezegun
-
-### Installing
-
-```bash 
+#### Install
+```shell
    git clone https://github.com/nikololiahim/devops
    cd app_python
    python3 -m pip install -r requirements/dev.txt
    python3 -m pip install -e .
 ```
 
-### Executing program
+#### Execute
 
 ```
     python3 -m moscow_time.__init__
 ```
 
-## Docker
+### Docker
 
 This app can be run as a Docker container. The image is
 available [on Dockerhub](https://hub.docker.com/r/nikololiahim/moscow_time).
+
+```shell
+    docker run -p 80:8000 nikololiahim/moscow_time:latest
+```
+
+After that you can go to [localhost](http://localhost/) and see the app in action.
 
 ## Configuration
 
