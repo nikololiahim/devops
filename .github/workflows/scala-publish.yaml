@@ -1,0 +1,27 @@
+name: Publish Scala Docker Image
+
+on:
+  push:
+jobs:
+  publish_to_dockerhub:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Setup Scala
+        uses: olafurpg/setup-scala@v10
+        with:
+          java-version: "adopt@1.8"
+
+      - name: Publish using sbt-docker-plugin
+        run: |
+          cd app_scala
+          sbt -v -Dfile.encoding=UTF8 +docker:publish
