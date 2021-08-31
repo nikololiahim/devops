@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+waitress = "*"
+pytz = "*"
+
+[dev-packages]
+pytest-flask = "*"
+freezegun = "*"
+pre-commit = "*"
+moscow-time = {editable = true, path = "."}
+
+[requires]
+python_version = "3.8"
