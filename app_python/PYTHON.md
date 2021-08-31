@@ -14,11 +14,11 @@
   to define fixtures (Pytest specific)
 - mocking `datetime` module in unit tests using `freezegun` library to avoid waiting a long time and time-related issues
 
-- multiple files with dependencies under the `requirements` directory to have separate sets of dependencies for different
-  environments
+- [pipenv](https://pipenv.pypa.io/en/latest/) to install and manage dependencies
 - [.gitignore template](https://github.com/github/gitignore/blob/master/Python.gitignore) provided by Github
-- config.py file for storing project-wide configurations
+- config.py file for storing application configurations
 - configurable [logging](https://flask.palletsprojects.com/en/2.0.x/logging/) built into Flask object
+- [pre-commit](https://pre-commit.com/) hooks to run the formatting tools automatically
 
 # Frameworks/Libraries Used
 
@@ -33,7 +33,8 @@
   implementation
 
 # Tools Used
-
+All these tools
 - [flake8](https://github.com/PyCQA/flake8) - an aggregate of several Python linters
 - [black](https://github.com/psf/black) - a widely used code formatter
+- [isort](https://github.com/PyCQA/isort) - a tool to sort imports in alphabetic order
 - Python/Markdown linters and formatters built into [Pycharm](https://www.jetbrains.com/pycharm/)
