@@ -1,6 +1,6 @@
 # Devops
 [![Python application](https://github.com/nikololiahim/devops/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/nikololiahim/devops/actions/workflows/python-app.yml)
-[![Scala application](https://github.com/nikololiahim/devops/actions/workflows/scala-application.yml/badge.svg?branch=master)](https://github.com/nikololiahim/devops/actions/workflows/scala-application.yml)
+[![Scala application](https://github.com/nikololiahim/devops/actions/workflows/scala-app.yml/badge.svg?branch=master)](https://github.com/nikololiahim/devops/actions/workflows/scala-app.yml)
 
 This is a repository for labs of 2021 DevOps course at Innopolis University.
 
