@@ -1,9 +1,19 @@
 pipeline {
     agent { docker { image 'python:3.6-slim-buster' } }
     stages {
-        stage('build') {
+        // everything is run in one shell due to specifics of python's virtualenv and pipenv
+        stage('install dependencies & lint & test') {
             steps {
-                sh 'python --version'
+                sh '''
+                    python -m pip install --upgrade pipenv wheel
+                    cd app_python
+                    pipenv install --dev flake8
+                    pipenv install --deploy --dev
+
+                    pipenv run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+                    pipenv run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+                    pipenv run pytest
+                '''
             }
         }
     }
