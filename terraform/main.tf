@@ -1,41 +1,38 @@
-# This .tf file is used to quickly launch the docker containers
-# for the two apps ('moscow_time' and 'moscow_time_scala')
-
 terraform {
   required_providers {
-    docker = {
-      source  = "kreuzwerker/docker"
-      version = "~> 2.13.0"
+    google = {
+      source  = "hashicorp/google"
+      version = "3.5.0"
     }
   }
 }
 
-provider "docker" {}
+provider "google" {
+  credentials = file("devops2021-324917-30741b2a8e2d.json")
 
-resource "docker_image" "moscow_time" {
-  name         = "nikololiahim/moscow_time:latest"
-  keep_locally = false
+  project = "devops2021-324917"
+  region  = "us-central1"
+  zone    = "us-central1-c"
 }
 
-resource "docker_container" "moscow_time" {
-  image = docker_image.moscow_time.latest
-  name  = "moscow_time"
-  ports {
-    internal = 8000
-    external = 8000
+resource "google_compute_network" "vpc_network" {
+  name                    = "terraform-network"
+  auto_create_subnetworks = "true"
+}
+
+resource "google_compute_instance" "vm_instance" {
+  name         = "terraform-instance"
+  machine_type = "f1-micro"
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-9"
+    }
   }
-}
 
-resource "docker_image" "moscow_time_scala" {
-  name         = "nikololiahim/moscow_time_scala:latest"
-  keep_locally = false
-}
-
-resource "docker_container" "moscow_time_scala" {
-  image = docker_image.moscow_time_scala.latest
-  name  = "moscow_time_scala"
-  ports {
-    internal = 9000
-    external = 9000
+  network_interface {
+    network = google_compute_network.vpc_network.self_link
+    access_config {
+    }
   }
 }
