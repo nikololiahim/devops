@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+ moscow_time:
+   image: nikololiahim/moscow_time:latest
+   container_name: moscow_time
+   ports:
+     - "80:8000"
