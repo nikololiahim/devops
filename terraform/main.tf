@@ -21,8 +21,8 @@ resource "google_compute_network" "vpc_network" {
 
 resource "google_compute_firewall" "rules" {
   description = "Firewall rules to allow SSH and HTTP traffic through"
-  name    = "allow-ssh"
-  network = google_compute_network.vpc_network.name
+  name        = "allow-ssh"
+  network     = google_compute_network.vpc_network.name
   allow {
     protocol = "tcp"
     ports = [
@@ -40,7 +40,7 @@ resource "google_compute_firewall" "rules" {
 
 resource "google_compute_instance" "instances" {
   for_each     = var.language
-  description = "An instance for the ${title(each.key)} application."
+  description  = "An instance for the ${title(each.key)} application."
   name         = "${each.key}-instance"
   machine_type = "f1-micro"
   tags = [
