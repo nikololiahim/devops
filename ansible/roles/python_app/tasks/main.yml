@@ -1,0 +1,23 @@
+- name: install pip3
+  apt: name=python3-pip state=present
+
+- name: Install docker-compose
+  pip:
+    executable: pip3
+    name:
+      - setuptools
+      - docker-compose<1.28
+
+- name: Create a folder for docker-compose.yml
+  file:
+    path: /opt/python_app
+    state: directory
+
+- name: Copy docker-compose.yml
+  copy:
+    src: docker-compose.yml
+    dest: /opt/python_app/docker-compose.yml
+
+- name: Start docker-compose
+  docker_compose:
+    project_src: /opt/python_app
