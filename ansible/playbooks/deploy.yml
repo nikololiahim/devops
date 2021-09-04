@@ -3,3 +3,15 @@
   roles:
     - docker
   become: yes
+
+- name: Deploy python app on python host
+  hosts: python
+  roles:
+    - python_app
+  become: yes
+
+- name: Deploy scala app on scala host
+  hosts: scala
+  roles:
+    - scala_app
+  become: yes
