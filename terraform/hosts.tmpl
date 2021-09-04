@@ -1,0 +1,4 @@
+[servers]
+%{ for map in instance_data ~}
+${map.language} ansible_host=${map.external_ip} ansible_ssh_private_key_file=${map.ssh_key_path} ansible_ssh_user=${map.language}
+%{ endfor ~}
