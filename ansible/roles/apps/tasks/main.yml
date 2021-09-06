@@ -10,14 +10,14 @@
 
 - name: Create a folder for docker-compose.yml
   file:
-    path: /opt/scala_app
+    path: "{{ apps_remote_install_path }}"
     state: directory
 
 - name: Copy docker-compose.yml
   copy:
-    src: docker-compose.yml
-    dest: /opt/scala_app/docker-compose.yml
+    src: "{{ language }}/docker-compose.yml"
+    dest: "{{ apps_remote_install_path }}/docker-compose.yml"
 
 - name: Start docker-compose
   docker_compose:
-    project_src: /opt/scala_app
+    project_src: "{{ apps_remote_install_path }}"

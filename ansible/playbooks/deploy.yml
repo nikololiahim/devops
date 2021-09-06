@@ -4,14 +4,20 @@
     - docker
   become: yes
 
-- name: Deploy python app on python host
+- name: Deploy Python app on its host
   hosts: python
+  vars:
+    apps_remote_install_path: "/opt/python_app"
+    language: "python"
   roles:
-    - python_app
+    - apps
   become: yes
 
-- name: Deploy scala app on scala host
+- name: Deploy Scala app on its host
   hosts: scala
+  vars:
+    apps_remote_install_path: "/opt/scala_app"
+    language: "scala"
   roles:
-    - scala_app
+    - apps
   become: yes
