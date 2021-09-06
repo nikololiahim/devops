@@ -1,7 +1,0 @@
-version: '3.8'
-services:
- moscow_time_scala:
-   image: nikololiahim/moscow_time_scala:latest
-   container_name: moscow_time_scala
-   ports:
-     - "80:9000"

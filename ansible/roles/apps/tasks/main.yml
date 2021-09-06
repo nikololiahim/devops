@@ -13,9 +13,9 @@
     path: "{{ apps_remote_install_path }}"
     state: directory
 
-- name: Copy docker-compose.yml
-  copy:
-    src: "{{ language }}/docker-compose.yml"
+- name: Create docker-compose.yml on remote host from template
+  template:
+    src: docker-compose.yml.j2
     dest: "{{ apps_remote_install_path }}/docker-compose.yml"
 
 - name: Start docker-compose
