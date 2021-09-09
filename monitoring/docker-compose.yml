@@ -1,0 +1,41 @@
+version: '3.7'
+
+networks:
+  loki:
+
+services:
+
+  moscow_time:
+    image: nikololiahim/moscow_time:latest
+    ports:
+      - "80:8000"
+    networks:
+      - loki
+    logging:
+      driver: "json-file"
+      options:
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+
+  loki:
+    image: grafana/loki:1.4.1
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - loki
+
+  promtail:
+    image: grafana/promtail:1.4.1
+    volumes:
+      - /var/lib/docker/containers/:/var/lib/docker/containers
+      - ./docker-config.yml:/etc/promtail/docker-config.yml
+    command: -config.file=/etc/promtail/docker-config.yml
+    networks:
+      - loki
+
+  grafana:
+    image: grafana/grafana:master
+    ports:
+      - "3000:3000"
+    networks:
+      - loki
