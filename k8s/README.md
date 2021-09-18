@@ -55,3 +55,21 @@ service "python-app" deleted
 $ kubectl delete deployment python-app
 deployment.apps "python-app" deleted
 ```
+
+## Creating a deployment from .yaml configuration files
+### 3. Command output
+
+
+```shell
+$ kubectl get pods,svc
+
+NAME                                         READY   STATUS    RESTARTS   AGE
+pod/python-app-deployment-67b95d59bb-cbs5b   1/1     Running   0          67m
+pod/python-app-deployment-67b95d59bb-szhnw   1/1     Running   0          67m
+pod/python-app-deployment-67b95d59bb-vthmt   1/1     Running   0          67m
+
+NAME                         TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+service/kubernetes           ClusterIP      10.96.0.1        <none>        443/TCP          147m
+service/python-app-service   LoadBalancer   10.109.185.239   <pending>     8000:30000/TCP   25m
+
+```
