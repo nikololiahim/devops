@@ -1,10 +1,10 @@
 # Logs are Accumulated with Loki
 
-![loki-logs](monitoring/loki-logs.png)
+![loki-logs](loki-logs.png)
 
 # Metrics are Collected and Displayed with Prometheus
 
-![prometheus-metrics](monitoring/prometheus-metrics.png)
+![prometheus-metrics](prometheus-metrics.png)
 
 # Best Practices
 
