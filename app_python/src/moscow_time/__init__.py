@@ -27,10 +27,10 @@ def create_app(test_config=None):
         cur.execute(
             """
             CREATE TABLE IF NOT EXISTS visits (
-      timestamp_ timestamp NOT NULL,
-      host varchar(50) NOT NULL,
-      PRIMARY KEY (timestamp_)
-    )""".strip()
+            timestamp_ timestamptz NOT NULL,
+            host varchar(50) NOT NULL,
+            PRIMARY KEY (timestamp_)
+            )""".strip()
         )
 
     if test_config is not None:
@@ -49,8 +49,8 @@ def create_app(test_config=None):
         with conn.cursor() as cur:
             cur.execute(
                 """
-            INSERT INTO visits (timestamp_, host) VALUES (%s, %s)
-            """.strip(),
+                INSERT INTO visits (timestamp_, host) VALUES (%s, %s)
+                """.strip(),
                 (msc_time, dict(request.headers).get("Host")),
             )
         return render_template(
@@ -61,18 +61,12 @@ def create_app(test_config=None):
     def visits():
         with conn.cursor() as cur:
             cur.execute(
-                """SELECT * FROM visits
-                           ORDER BY timestamp_"""
+                """
+                SELECT * FROM visits
+                ORDER BY timestamp_
+                """
             )
-            rows = list(
-                map(
-                    lambda pair: (
-                        pair[0] + datetime.timedelta(hours=3),
-                        pair[1],
-                    ),
-                    cur.fetchall(),
-                )
-            )
+            rows = cur.fetchall()
             return render_template("visits.html", data=rows, total=len(rows))
 
     return app
