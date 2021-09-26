@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  python_app:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    command: pipenv run python -m moscow_time.__init__
+
+volumes:
+  pg_data:
