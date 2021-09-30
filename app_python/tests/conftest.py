@@ -1,4 +1,5 @@
 import datetime
+from unittest.mock import patch
 
 import pytest
 from moscow_time import MOSCOW_TZ, create_app
@@ -7,9 +8,10 @@ from moscow_time.models import MoscowTime
 
 @pytest.fixture
 def client():
-    app = create_app({"TESTING": True})
-    with app.test_client() as client:
-        yield client
+    with patch("psycopg2.connect"):
+        app = create_app({"TESTING": True})
+        with app.test_client() as client:
+            yield client
 
 
 @pytest.fixture
