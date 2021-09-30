@@ -1,10 +1,8 @@
 import datetime
-import logging
 import os
 
 import psycopg2
 import pytz
-import waitress
 from flask import Flask, render_template, request
 from moscow_time.models import MoscowTime
 
@@ -70,19 +68,3 @@ def create_app(test_config=None):
             return render_template("visits.html", data=rows, total=len(rows))
 
     return app
-
-
-if __name__ == "__main__":
-    app = create_app()
-    DEBUG = os.getenv("PYTHON_APP_DEBUG", "on")
-    if DEBUG == "on":
-        app.logger.setLevel(logging.DEBUG)
-    HOST = os.getenv("PYTHON_APP_HOST")
-    PORT = os.getenv("PYTHON_APP_PORT")
-    app.logger.info(
-        f"""
-    Application running at {HOST}:{PORT}
-    Debug mode: {os.getenv("PYTHON_APP_DEBUG")}
-    """
-    )
-    waitress.serve(app, host=HOST, port=PORT)

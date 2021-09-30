@@ -15,7 +15,7 @@ services:
       - "8000:8000"
     depends_on:
       - postgres
-    command: pipenv run python -m moscow_time.__init__
+    command: pipenv run python -m moscow_time
 
 volumes:
   pg_data:
