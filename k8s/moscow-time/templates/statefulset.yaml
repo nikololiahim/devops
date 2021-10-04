@@ -31,6 +31,8 @@ spec:
         - name: config-volume
           configMap:
             name: config.json
+        - name: workdir
+          emptyDir: {}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -49,6 +51,8 @@ spec:
               subPath: config.json
             - name: { { .Values.volumeClaim.name } }
               mountPath: { { .Values.volumeClaim.mountPath } }
+            - name: workdir
+              mountPath: /workdir
           ports:
             - name: http
               containerPort: 8000
@@ -75,6 +79,18 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      initContainers:
+        - name: install
+          image: busybox
+          command:
+            - wget
+            - "-O"
+            - "/workdir/index.html"
+            - http://info.cern.ch
+          volumeMounts:
+            - name: workdir
+              mountPath: "/workdir"
+      dnsPolicy: Default
   volumeClaimTemplates:
     - metadata:
         name: { { .Values.volumeClaim.name } }
