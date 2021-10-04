@@ -73,7 +73,12 @@ autoscaling:
   minReplicas: 1
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
+
+
+volumeClaim:
+  name: moscow-time
+  storage: 64Mi
+  mountPath: /
 
 nodeSelector: {}
 

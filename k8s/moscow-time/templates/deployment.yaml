@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "moscow-time.fullname" . }}
   labels:
@@ -47,6 +47,8 @@ spec:
             - name: config-volume
               mountPath: /config.json
               subPath: config.json
+            - name: { { .Values.volumeClaim.name } }
+              mountPath: { { .Values.volumeClaim.mountPath } }
           ports:
             - name: http
               containerPort: 8000
@@ -73,3 +75,11 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+  volumeClaimTemplates:
+    - metadata:
+        name: { { .Values.volumeClaim.name } }
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: { { .Values.volumeClaim.storage } }

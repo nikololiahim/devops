@@ -10,4 +10,3 @@
 
 - Use premade Docker images for Grafana and Loki
 - Minimal configuration for my needs
-
